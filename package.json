@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "develop": "gatsby develop",
+    "dev:client":"yarn build && yarn serve",
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",

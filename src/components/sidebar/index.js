@@ -34,8 +34,8 @@ const navLinks = [
 
 const Index = ({ toggle, access }) => {
      return (
-          <Portal>
-               <Sidebar id='side' ref={access} className='active'>
+          <div>
+               <Sidebar id='side' ref={access} className='side-bar-layer'>
                     <aside className='side-bar bg-white  flex flex-col justify-between'>
                          <div className='w-full  flex justify-between'>
                               <div className='logo  p-2  capitalize font-pac font-semibold md:text-2xl'>idris <b className="text-sky-600 text-xl">.</b></div>
@@ -84,7 +84,7 @@ const Index = ({ toggle, access }) => {
                          </div>
                     </aside>
                </Sidebar>
-          </Portal>
+          </div>
      );
 };
 
@@ -101,6 +101,7 @@ const Sidebar = styled.div`
      aside {
           width: 0;
           height: 100vh;
+          visibility: hidden;
           transition: all 0.4s ease-in-out;
 
           .side-links {
@@ -109,20 +110,20 @@ const Sidebar = styled.div`
           }
           .social {
                transition: all 0.5s ease-in-out;
-               /* border: 1px solid red; */
-               visibility: hidden;
+           visibility: hidden;
                opacity: 0;
           }
      }
 
      &.active {
-          visibility: visible;
-
+     visibility: visible;
+     
           aside {
                width: 290px;
                transition: all 0.4s ease-in-out;
                padding: 1rem;
-
+                visibility: visible;
+               
                .side-links {
                     transition: all 0.5s ease-in-out;
 

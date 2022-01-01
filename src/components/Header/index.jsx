@@ -35,13 +35,8 @@ const Header = () => {
 const sideBarRef = React.useRef()
 
 function openSidebar(){
-
-
      const sideb = document.getElementById("side");
-     
-     sideb.classList.toggle('active')
- 
-     
+     sideb.classList.toggle('active')  
 }
      
      return (
