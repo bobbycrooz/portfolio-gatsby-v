@@ -8,7 +8,7 @@
     "gatsby"
   ],
   "scripts": {
-    "develop": "gatsby develop",
+    "develop": "  PORT=3000 gatsby develop",
     "dev:client":"yarn build && yarn serve",
     "start": "gatsby develop",
     "build": "gatsby build",
