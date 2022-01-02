@@ -1,5 +1,5 @@
 import React from "react";
-import { Portal } from "react-portal";
+// import { Portal } from "react-portal";
 import styled from "styled-components";
 import { GrClose } from "react-icons/gr";
 import { Link } from "gatsby";
