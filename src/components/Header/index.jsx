@@ -4,323 +4,348 @@ import styled from "styled-components";
 import { FaGithubAlt, FaLinkedinIn } from "react-icons/fa";
 import { BsTwitter } from "react-icons/bs";
 import SideBar from "../sidebar";
+import { motion } from "framer-motion";
+
+// variants={one} animate="finish" initial="start"
 
 const navLinks = [
-     {
-          name: "Home",
-          link: "/",
-          color: "#4338ca",
-     },
+  {
+    name: "Home",
+    link: "/",
+    color: "#4338ca",
+  },
 
-     {
-          name: "Portfolio",
-          link: "/portfolio",
-          color: "#7e22ce",
-     },
+  {
+    name: "Portfolio",
+    link: "/portfolio",
+    color: "#7e22ce",
+  },
 
-     {
-          name: "Contact",
-          link: "/contact",
-          color: "#a21caf",
-     },
+  {
+    name: "Contact",
+    link: "/contact",
+    color: "#a21caf",
+  },
 
-     {
-          name: "About",
-          link: "/about",
-          color: "#be185d",
-     },
+  {
+    name: "About",
+    link: "/about",
+    color: "#be185d",
+  },
 ];
 
 const Header = () => {
-const sideBarRef = React.useRef()
+  const sideBarRef = React.useRef();
 
-function openSidebar(){
-     const sideb = document.getElementById("side");
-     sideb.classList.toggle('active')  
-}
-     
-     return (
-          <>
-              <SideBar access={sideBarRef}  toggle={openSidebar}>Sometimes portaled?</SideBar>
-               <Nav className=''>
-                    <div className='logo  p-2 fixed capitalize font-pac font-semibold md:text-2xl text-xl'>idris<b className="text-sky-600 ml-1">.</b></div>
-                    <button onClick={openSidebar} className='menu  flex flex-col space-y-2 justify-center items-end'>
-                         <div className='one'></div>
-                         <div className='two'></div>
-                         <div className='three'></div>
-                    </button>
-                    <nav className='dot-links  h-28 w-2  flex flex-col items-center justify-between'>
-                         {navLinks.map((item, i) => (
-                              <Link
-                                   to={item.link}
-                                   activeStyle={{ backgroundColor: `${item.color}` }}
-                                   className='w-3 h-3 rounded-full border  bg-transparent'
-                              />
-                         ))}
-                    </nav>
-                    <div className='follow  flex flex-col items-center justify-between'>
-                         <ul className=' flex flex-col  items-center justify-between space-y-2'>
-                              <FaGithubAlt className='hover:text-sky-600 hover:text-xl text-sm md:text-lg' />
-                              <BsTwitter className='hover:text-sky-600 hover:text-xl text-sm md:text-lg' />
-                              <FaLinkedinIn className='hover:text-sky-600 hover:text-xl text-sm md:text-lg' />
-                         </ul>
-                         <h1 className='follow-text capitalize font-lato md:font-semibold text-sm md:text-lg'>follow me</h1>
-                    </div>
-                    <nav className='nav-links'>
-                         <div className='navbar w-full h-full bg-white flex items-center justify-center border border-black mx-auto'>
-                              <ul className='w-full flex justify-around text-black '>
-                                   {navLinks.map((item) => (
-                                        <li>
-                                             <Link
-                                                  className='hover:text-blue-600 font-semibold font-joe text-slate-700'
-                                                  activeStyle={{ color: "#2563eb" }}
-                                                  to={item.link}>
-                                                  {item.name}
-                                             </Link>
-                                        </li>
-                                   ))}
-                              </ul>
-                         </div>
-                    </nav>
-               </Nav>
-          </>
-     );
+  function openSidebar() {
+    const sideb = document.getElementById("side");
+    sideb.classList.toggle("active");
+  }
+
+  const one = {
+    start: {
+      left: "-10%",
+      opacity: 0,
+    },
+    finish: {
+      left: "10%",
+      opacity: 1,
+    },
+    transition: {
+      type: "",
+    },
+  };
+
+  return (
+    <>
+      <SideBar access={sideBarRef} toggle={openSidebar}></SideBar>
+      <Nav className="">
+        <motion.div
+          animate={{ opacity: 1, scale: [1, 1.9, 1] }}
+          initial={{ opacity: 0, transition: { duration: 3 } }}
+          className="logo  p-2 fixed capitalize font-pac font-semibold md:text-2xl text-xl"
+        >
+          idris<b className="text-sky-600 ml-1">.</b>
+        </motion.div>
+        <button
+          onClick={openSidebar}
+          className="menu  flex flex-col space-y-2 justify-center items-end"
+        >
+          <div className="one"></div>
+          <div className="two"></div>
+          <div className="three"></div>
+        </button>
+        <nav className="dot-links  h-28 w-2  flex flex-col items-center justify-between">
+          {navLinks.map((item, i) => (
+            <Link
+              to={item.link}
+              activeStyle={{ backgroundColor: `${item.color}` }}
+              className="w-3 h-3 rounded-full border  bg-transparent"
+            />
+          ))}
+        </nav>
+        <motion.div
+          animate={{
+            opacity: 1,
+            transition: { duration: 1, delay: 4},
+          }}
+          initial={{ opacity: 0 }}
+          className="follow  flex flex-col items-center justify-between"
+        >
+          <ul className=" flex flex-col  items-center justify-between space-y-2">
+            <FaGithubAlt className="hover:text-sky-600 hover:text-xl text-sm md:text-lg" />
+            <BsTwitter className="hover:text-sky-600 hover:text-xl text-sm md:text-lg" />
+            <FaLinkedinIn className="hover:text-sky-600 hover:text-xl text-sm md:text-lg" />
+          </ul>
+          <h1 className="follow-text capitalize font-lato md:font-semibold text-sm md:text-lg">
+            follow me
+          </h1>
+        </motion.div>
+        <nav className="nav-links">
+          <div className="navbar w-full h-full bg-white flex items-center justify-center border border-black mx-auto">
+            <ul className="w-full flex justify-around text-black ">
+              {navLinks.map((item) => (
+                <li>
+                  <Link
+                    className="hover:text-blue-600 font-semibold font-joe text-slate-700"
+                    activeStyle={{ color: "#2563eb" }}
+                    to={item.link}
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </nav>
+      </Nav>
+    </>
+  );
 };
 
 const Nav = styled.div`
-     position: fixed;
-     top: 0;
-     left: 0;
-     background-color: transparent;
-     color: white;
-     z-index: 10;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: transparent;
+  color: white;
+  z-index: 10;
 
-     .logo {
-          left: 44px;
-          top: 35px;
+  .logo {
+    left: 44px;
+    top: 35px;
 
-          transition: all 0.4s ease;
+    transition: all 0.4s ease;
 
-          &:hover {
-               transform: scale(1.2);
-               transition: all 0.4s ease;
-          }
-     }
+    &:hover {
+      transform: scale(1.2);
+      transition: all 0.4s ease;
+    }
+  }
 
-     .menu {
-          position: fixed;
-          width: 70px;
-          height: 55px;
-          right: 44px;
-          top: 35px;
-          padding: 5px 7px;
+  .menu {
+    position: fixed;
+    width: 70px;
+    height: 55px;
+    right: 44px;
+    top: 35px;
+    padding: 5px 7px;
 
-          div {
-               height: 4px;
-               width: 100%;
-               background-color: #f3f4f6;
-               border-radius: 4px;
-          }
-          .two {
-               width: 75%;
-               transition: all 0.4s ease;
-          }
+    div {
+      height: 4px;
+      width: 100%;
+      background-color: #f3f4f6;
+      border-radius: 4px;
+    }
+    .two {
+      width: 75%;
+      transition: all 0.4s ease;
+    }
 
-          .three {
-               width: 50%;
-               transition: all 0.4s ease;
-          }
+    .three {
+      width: 50%;
+      transition: all 0.4s ease;
+    }
 
-          &:hover {
-               .two {
-                    width: 87%;
-               }
+    &:hover {
+      .two {
+        width: 87%;
+      }
 
-               .three {
-                    width: 60%;
-               }
-          }
-     }
+      .three {
+        width: 60%;
+      }
+    }
+  }
 
-     .dot-links {
-          position: fixed;
-          /* width: 70px; */
-          /* height: 55px; */
-          right: 44px;
-          top: 50%;
-          transform: translateY(-50%);
-          padding: 5px 7px;
-     }
+  .dot-links {
+    position: fixed;
+    /* width: 70px; */
+    /* height: 55px; */
+    right: 44px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 5px 7px;
+  }
 
-     .follow {
-          position: fixed;
-          width: 25px;
-          height: 170px;
-          left: 44px;
-          top: 50%;
-          transform: translateY(-50%);
-          padding: 1px;
+  .follow {
+    position: fixed;
+    width: 25px;
+    height: 170px;
+    left: 44px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 1px;
 
-          ul {
-               width: 20px;
-               height: auto;
-          }
+    ul {
+      width: 20px;
+      height: auto;
+    }
 
-          &-text {
-               width: 100px;
-               /* height: 20px; */
-               transform: rotate(-90deg);
-               margin: 0;
-               position: relative;
+    &-text {
+      width: 100px;
+      /* height: 20px; */
+      transform: rotate(-90deg);
+      margin: 0;
+      position: relative;
 
-               &:before {
-                    content: "";
-                    position: absolute;
-                    height: 2px;
-                    width: 40px;
-                    right: -30px;
-                    top: 50%;
-                    /* transform: translateY(-50%); */
-                    border-radius: 8px;
+      &:before {
+        content: "";
+        position: absolute;
+        height: 2px;
+        width: 40px;
+        right: -30px;
+        top: 50%;
+        /* transform: translateY(-50%); */
+        border-radius: 8px;
 
-                    background: white;
-               }
-          }
-     }
+        background: white;
+      }
+    }
+  }
 
-     .nav-links {
-          position: fixed;
-          bottom: 0;
+  .nav-links {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 32px;
+    background: #2563eb;
+    padding: 1px 0;
+    z-index: 12;
+
+    .navbar {
+      ul {
+        /* border: 1px solid black; */
+        width: 400px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 440px) {
+    .logo {
+      left: 20px;
+      top: 15px;
+
+      transition: all 0.4s ease;
+
+      &:hover {
+        transform: scale(1.2);
+        transition: all 0.4s ease;
+      }
+    }
+
+    .menu {
+      width: 50px;
+      height: 36px;
+      right: 20px;
+      top: 19px;
+      padding: 5px 7px;
+
+      div {
+        height: 3px;
+        width: 100%;
+        background-color: #f3f4f6;
+        border-radius: 4px;
+      }
+      .one {
+        width: 45%;
+        transition: all 0.4s ease;
+      }
+      .two {
+        width: 75%;
+        transition: all 0.4s ease;
+      }
+
+      .three {
+        width: 45%;
+        transition: all 0.4s ease;
+      }
+
+      &:hover {
+        .one {
           width: 100%;
-          height: 32px;
-          background: #2563eb;
-          padding: 1px 0;
-          z-index: 12;
+        }
+        .two {
+          width: 87%;
+        }
 
-          .navbar {
-               ul {
-                    /* border: 1px solid black; */
-                    width: 400px;
-               }
-          }
-     }
-     
-     
-     @media screen and (max-width:440px){
+        .three {
+          width: 60%;
+        }
+      }
+    }
 
-     .logo {
-          left: 20px;
-          top: 15px;
+    .dot-links {
+      position: fixed;
+      /* width: 70px; */
+      /* height: 55px; */
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 2px 4px;
+      display: none;
+    }
 
-          transition: all 0.4s ease;
+    .follow {
+      display: none;
+      width: 25px;
+      height: 150px;
+      left: 20px;
+      top: 50%;
 
-          &:hover {
-               transform: scale(1.2);
-               transition: all 0.4s ease;
-          }
-     }
+      ul {
+        width: 20px;
+        height: auto;
+      }
 
-     .menu {
-          width: 50px;
-          height: 36px;
-          right: 20px;
-          top: 19px;
-          padding: 5px 7px;
-          
+      &-text {
+        &:before {
+          height: 2px;
+          width: 40px;
+          right: -20px;
+        }
+      }
+    }
 
-          div {
-               height: 3px;
-               width: 100%;
-               background-color: #f3f4f6;
-               border-radius: 4px;
-          }
-           .one {
-               width: 45%;
-               transition: all 0.4s ease;
-          }
-          .two {
-               width: 75%;
-               transition: all 0.4s ease;
-          }
+    .nav-links {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 32px;
+      background: #2563eb;
+      padding: 1px 0;
+      z-index: 12;
 
-          .three {
-               width: 45%;
-               transition: all 0.4s ease;
-          }
-
-          &:hover {
-          
-            .one {
-               width: 100%;
-          }
-               .two {
-                    width: 87%;
-               }
-
-               .three {
-                    width: 60%;
-               }
-          }
-     }
-
-     .dot-links {
-          position: fixed;
-          /* width: 70px; */
-          /* height: 55px; */
-          right: 20px;
-          top: 50%;
-          transform: translateY(-50%);
-          padding: 2px 4px;
-        display: none;
-          
-     }
-
-     .follow {
-        display: none;
-          width: 25px;
-          height: 150px;
-          left: 20px;
-          top: 50%;
-      
-
-          ul {
-               width: 20px;
-               height: auto;
-          }
-
-          &-text {
-             
-
-               &:before {
-                    
-                    height: 2px;
-                    width: 40px;
-                    right: -20px;
-                    
-                 
-               }
-          }
-     }
-
-     .nav-links {
-          position: fixed;
-          bottom: 0;
-          width: 100%;
-          height: 32px;
-          background: #2563eb;
-          padding: 1px 0;
-          z-index: 12;
-
-          .navbar {
-               ul {
-                    /* border: 1px solid black; */
-                    width: 400px;
-               }
-          }
-     }
-     
-     }
-     @media screen and (max-width:740px){}
+      .navbar {
+        ul {
+          /* border: 1px solid black; */
+          width: 400px;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 740px) {
+  }
 `;
 
 export default Header;
